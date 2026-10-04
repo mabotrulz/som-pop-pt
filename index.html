@@ -392,7 +392,7 @@
       <polygon points="25,25 30,38 35,28" fill="#6B4423"/>
       <polygon points="75,25 70,38 65,28" fill="#6B4423"/>
     </svg>
-    <div id="guide-bubble">Estoura o balão com <b>/a/</b>!</div>
+    <div id="guide-bubble">Estoura o balão com <b>A</b>!</div>
 
     <div id="banner">Nível completo!</div>
 
@@ -566,7 +566,7 @@
     function announceTarget() {
       if (!currentTarget) return;
       speakSound(currentTarget);
-      showBubble(`Estoura o <b>/${currentTarget.spell}/</b>!`);
+      showBubble(`Estoura o <b>${currentTarget.spell.toUpperCase()}</b>!`);
     }
 
     function showBubble(html, duration = 2500) {
@@ -595,7 +595,7 @@
 
     function setTarget() {
       currentTarget = pickTarget(level);
-      targetSoundEl.textContent = `/${currentTarget.spell}/`;
+      targetSoundEl.textContent = currentTarget.spell.toUpperCase();
       announceTarget();
     }
 
@@ -677,7 +677,7 @@
         updateHUD();
         el.classList.add('wrong-flash');
         speak(`Ups! Isso é ${sound.spell}. Estamos à procura de ${currentTarget.spell}.`, true);
-        showBubble(`Ups! Isso é <b>/${sound.spell}/</b>. Queremos <b>/${currentTarget.spell}/</b>!`, 3000);
+        showBubble(`Ups! Isso é <b>${sound.spell.toUpperCase()}</b>. Queremos <b>${currentTarget.spell.toUpperCase()}</b>!`, 3000);
         if (lives <= 0) {
           endGame(false);
         }
@@ -755,7 +755,7 @@
           balloons.splice(i, 1);
           if (wasTarget) {
             speak(`Ups! Perdeste o ${b.sound.spell}! Ouve outra vez.`, true);
-            showBubble(`Ups! Perdeste o <b>/${b.sound.spell}/</b>!`, 2000);
+            showBubble(`Ups! Perdeste o <b>${b.sound.spell.toUpperCase()}</b>!`, 2000);
             announceTarget();
           }
         }
